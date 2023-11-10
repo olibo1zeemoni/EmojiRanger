@@ -41,7 +41,7 @@ struct AvatarView: View {
                         .frame(height: 10)
                     Text("Healing Time")
                     Text(character.fullHealthDate, style: .timer)
-                        .font(.system(.title, design: .monospaced))
+                        .font(.system(.title3, design: .monospaced))
                 }
             }
         }
