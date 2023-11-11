@@ -13,5 +13,6 @@ import SwiftUI
 struct EmojiRangerWidgetBundle: WidgetBundle {
     var body: some Widget {
         EmojiRangerWidget()
+        LeaderboardWidget()
     }
 }

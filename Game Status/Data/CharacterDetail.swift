@@ -20,6 +20,9 @@ struct CharacterDetail: Hashable, Codable, Identifiable {
     var id: String {
         name
     }
+    
+    static let LeaderboardWidgetKind: String = "LeaderboardWidget"
+    static let EmojiRangerWidgetKind: String = "EmojiRangerWidget"
 
     static let panda = CharacterDetail(
                 name: "Power Panda",

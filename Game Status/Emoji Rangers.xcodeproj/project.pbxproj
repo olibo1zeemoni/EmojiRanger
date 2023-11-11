@@ -20,10 +20,11 @@
 		57A01E77248898F100D9E45F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A01E76248898F100D9E45F /* DetailView.swift */; };
 		BE6A2CE6249988AD0022915C /* EmojiRangers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A2CE4249988AD0022915C /* EmojiRangers.swift */; };
 		BE6A2CE7249988AD0022915C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A2CE5249988AD0022915C /* ContentView.swift */; };
+		F519E3DB2AFFB60A0064FD02 /* LeaderBoardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F519E3DA2AFFB60A0064FD02 /* LeaderBoardWidget.swift */; };
+		F57D506C2AFE58E400403D52 /* EmojRangerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58BF6F62AFE0A3400A5A0D8 /* EmojRangerWidget.swift */; };
 		F58BF6F12AFE0A3400A5A0D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5733B346248884DD0035C9B7 /* WidgetKit.framework */; };
 		F58BF6F22AFE0A3400A5A0D8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5733B348248884DD0035C9B7 /* SwiftUI.framework */; };
 		F58BF6F52AFE0A3400A5A0D8 /* EmojRangerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58BF6F42AFE0A3400A5A0D8 /* EmojRangerWidgetBundle.swift */; };
-		F58BF6F72AFE0A3400A5A0D8 /* EmojRangerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58BF6F62AFE0A3400A5A0D8 /* EmojRangerWidget.swift */; };
 		F58BF6F92AFE0A3700A5A0D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F58BF6F82AFE0A3700A5A0D8 /* Assets.xcassets */; };
 		F58BF6FD2AFE0A3700A5A0D8 /* EmojRangerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F58BF6F02AFE0A3400A5A0D8 /* EmojRangerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F58BF7022AFE0A8100A5A0D8 /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D58F982498199300137818 /* GameColors.swift */; };
@@ -83,6 +84,7 @@
 		BE6A2CE4249988AD0022915C /* EmojiRangers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiRangers.swift; sourceTree = "<group>"; };
 		BE6A2CE5249988AD0022915C /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E68FC7C59970E72A6D9463B8 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = ../Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		F519E3DA2AFFB60A0064FD02 /* LeaderBoardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardWidget.swift; sourceTree = "<group>"; };
 		F58BF6F02AFE0A3400A5A0D8 /* EmojRangerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EmojRangerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58BF6F42AFE0A3400A5A0D8 /* EmojRangerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojRangerWidgetBundle.swift; sourceTree = "<group>"; };
 		F58BF6F62AFE0A3400A5A0D8 /* EmojRangerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojRangerWidget.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			children = (
 				F58BF6F42AFE0A3400A5A0D8 /* EmojRangerWidgetBundle.swift */,
 				F58BF6F62AFE0A3400A5A0D8 /* EmojRangerWidget.swift */,
+				F519E3DA2AFFB60A0064FD02 /* LeaderBoardWidget.swift */,
 				F58BF7092AFE3FCC00A5A0D8 /* CharacterSelectionIntents.intentdefinition */,
 				F58BF6F82AFE0A3700A5A0D8 /* Assets.xcassets */,
 				F58BF6FA2AFE0A3700A5A0D8 /* Info.plist */,
@@ -363,13 +366,14 @@
 			files = (
 				F58BF7072AFE0A8100A5A0D8 /* CharacterDetail.swift in Sources */,
 				F58BF7022AFE0A8100A5A0D8 /* GameColors.swift in Sources */,
+				F519E3DB2AFFB60A0064FD02 /* LeaderBoardWidget.swift in Sources */,
 				F58BF7032AFE0A8100A5A0D8 /* ImageURLProtocol.swift in Sources */,
 				F58BF70B2AFE3FCD00A5A0D8 /* CharacterSelectionIntents.intentdefinition in Sources */,
 				F58BF7052AFE0A8100A5A0D8 /* HealthLevelShape.swift in Sources */,
+				F57D506C2AFE58E400403D52 /* EmojRangerWidget.swift in Sources */,
 				F58BF7062AFE0A8100A5A0D8 /* AllCharactersView.swift in Sources */,
 				F58BF6F52AFE0A3400A5A0D8 /* EmojRangerWidgetBundle.swift in Sources */,
 				F58BF7042AFE0A8100A5A0D8 /* AvatarView.swift in Sources */,
-				F58BF6F72AFE0A3400A5A0D8 /* EmojRangerWidget.swift in Sources */,
 				F58BF7082AFE0A8100A5A0D8 /* CharacterNameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

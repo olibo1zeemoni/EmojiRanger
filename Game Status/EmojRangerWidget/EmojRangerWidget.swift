@@ -66,7 +66,7 @@ struct EmojiRangerWidgetEntryView : View {
     var entry: Provider.Entry
     
     @Environment(\.widgetFamily) var family
-
+        @ViewBuilder
     var body: some View {
         switch family {
         case .systemSmall:
@@ -114,6 +114,31 @@ struct EmojiRangerWidget: Widget {
     }
 }
 
-//#Preview {
-//    EmojiRangerWidgetEntryView(entry: SimpleEntry(date: Date(), character: .panda, relevance: nil), family: <#T##arg#>)
-//}
+
+//MARK: - preview 
+
+struct WidgetViewPreviews: PreviewProvider {
+
+  static var previews: some View {
+    VStack {
+        EmojiRangerWidgetEntryView(entry: SimpleEntry(date: Date(), character: .panda, relevance: nil))
+            .containerBackground(Color.gameBackground, for: .widget)
+    }
+    .previewContext(WidgetPreviewContext(family: .systemSmall))
+  }
+}
+
+
+extension View {
+     func widgetBackground() -> some View {
+         if #available(iOSApplicationExtension 17.0, *) {
+             return containerBackground(for: .widget) {
+                 Color.gameBackground
+             }
+         } else {
+             return background {
+                 Color.gameBackground
+             }
+         }
+    }
+}
