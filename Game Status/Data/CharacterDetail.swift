@@ -72,10 +72,10 @@ struct CharacterDetail: Hashable, Codable, Identifiable {
         return date ?? Date()
     }
     
-    static func characterFromName(name: String?) -> CharacterDetail? {
+    static func characterFromName(name: String?) -> CharacterDetail {
         return (availableCharacters + remoteCharacters).first(where: { (character) -> Bool in
             return character.name == name
-        })
+        })!
     }
     
     static func characterFromURL(url: URL) -> CharacterDetail? {

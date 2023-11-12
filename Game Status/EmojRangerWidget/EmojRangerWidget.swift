@@ -13,31 +13,31 @@ struct Provider: IntentTimelineProvider {
     typealias Entry = SimpleEntry
     
  
-    func character(for configuration: CharacterSelectionIntent) -> CharacterDetail {
-        switch configuration.hero {
-            
-        case .panda:
-            return .panda
-        case .egghead:
-            return .egghead
-        case .spouty:
-            return .spouty
-        default:
-           return .panda
-        }
-    }
+//    func character(for configuration: DynamicCharacterSelectionIntent) -> CharacterDetail {
+//        switch configuration.hero {
+//            
+//        case .panda:
+//            return .panda
+//        case .egghead:
+//            return .egghead
+//        case .spouty:
+//            return .spouty
+//        default:
+//           return .panda
+//        }
+//    }
     
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), character: .panda, relevance: nil)
     }
 
-   public func getSnapshot(for configuration: CharacterSelectionIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+   public func getSnapshot(for configuration: DynamicCharacterSelectionIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date(), character: .panda, relevance: nil)
         completion(entry)
     }
 
-     public func getTimeline(for configuration: CharacterSelectionIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-         let selectedCharacter = character(for: configuration)
+     public func getTimeline(for configuration: DynamicCharacterSelectionIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+         let selectedCharacter = CharacterDetail.characterFromName(name: configuration.hero?.identifier)
          let endDate = selectedCharacter.fullHealthDate
          let oneMinute: TimeInterval = 60
          var currentDate = Date()
@@ -98,15 +98,15 @@ struct EmojiRangerWidget: Widget {
     let kind: String = "EmojiRangerWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: CharacterSelectionIntent.self, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
+        IntentConfiguration(kind: kind, intent: DynamicCharacterSelectionIntent.self, provider: Provider()) { entry in
+//            if #available(iOS 17.0, *) {
                 EmojiRangerWidgetEntryView(entry: entry)
                     .containerBackground(Color.gameBackground, for: .widget)
-            } else {
-                EmojiRangerWidgetEntryView(entry: entry)
-                    .padding()
-                    .background(Color.gameBackground)
-            }
+//            } else {
+//                EmojiRangerWidgetEntryView(entry: entry)
+//                    .padding()
+//                    .background(Color.gameBackground)
+//            }
         }
         .configurationDisplayName("Emoji Ranger Detail")
         .description("Keep track of your favorite emoji")
@@ -120,7 +120,7 @@ struct EmojiRangerWidget: Widget {
 struct WidgetViewPreviews: PreviewProvider {
 
   static var previews: some View {
-    VStack {
+    Group {
         EmojiRangerWidgetEntryView(entry: SimpleEntry(date: Date(), character: .panda, relevance: nil))
             .containerBackground(Color.gameBackground, for: .widget)
     }

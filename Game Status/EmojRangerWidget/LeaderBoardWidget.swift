@@ -74,6 +74,7 @@ struct LeaderboardWidget: Widget {
         .configurationDisplayName("Ranger Leaderboard")
         .description("See all the rangers.")
         .supportedFamilies(LeaderboardWidget.supportedFamilies)
+//        .onBackgroundURLSessionEvents { identifier, completion in }
     }
 }
 
