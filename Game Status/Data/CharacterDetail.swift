@@ -72,10 +72,16 @@ struct CharacterDetail: Hashable, Codable, Identifiable {
         return date ?? Date()
     }
     
-    static func characterFromName(name: String?) -> CharacterDetail {
+    var injuryDate: Date {
+        let totalInjurySeconds = 3600 / healthRecoveryRatePerHour
+        let injuryDate = fullHealthDate.advanced(by: -totalInjurySeconds)
+        return injuryDate
+    }
+    
+    static func characterFromName(name: String?) -> CharacterDetail? {
         return (availableCharacters + remoteCharacters).first(where: { (character) -> Bool in
             return character.name == name
-        })!
+        })
     }
     
     static func characterFromURL(url: URL) -> CharacterDetail? {
@@ -123,6 +129,19 @@ struct CharacterDetail: Hashable, Codable, Identifiable {
             return nil
         }
         return CharacterDetail.characterFromName(name: name)
+    }
+    
+    static func superchargeHeros() {
+        var val = herosAreSupercharged()
+        val.toggle()
+        UserDefaults(suiteName: appGroup)?.setValue(val, forKey: "supercharged")
+    }
+    
+    static func herosAreSupercharged() -> Bool {
+        guard let areCharged = UserDefaults(suiteName: appGroup)?.value(forKey: "supercharged") as? Bool else {
+            return false
+        }
+        return areCharged
     }
 }
 

@@ -57,7 +57,7 @@ struct SiriKitIntentProvider: IntentTimelineProvider {
         if let name = configuration.identifier {
             // Save the most recently selected hero to the app group.
             CharacterDetail.setLastSelectedCharacter(heroName: name)
-            return CharacterDetail.characterFromName(name: name)
+            return CharacterDetail.characterFromName(name: name) ?? CharacterDetail.panda
         }
         return .spouty
     }

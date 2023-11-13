@@ -13,19 +13,6 @@ struct Provider: IntentTimelineProvider {
     typealias Entry = SimpleEntry
     
  
-//    func character(for configuration: DynamicCharacterSelectionIntent) -> CharacterDetail {
-//        switch configuration.hero {
-//            
-//        case .panda:
-//            return .panda
-//        case .egghead:
-//            return .egghead
-//        case .spouty:
-//            return .spouty
-//        default:
-//           return .panda
-//        }
-//    }
     
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), character: .panda, relevance: nil)
@@ -37,7 +24,7 @@ struct Provider: IntentTimelineProvider {
     }
 
      public func getTimeline(for configuration: DynamicCharacterSelectionIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-         let selectedCharacter = CharacterDetail.characterFromName(name: configuration.hero?.identifier)
+         let selectedCharacter = CharacterDetail.characterFromName(name: configuration.hero?.identifier) ?? CharacterDetail.panda
          let endDate = selectedCharacter.fullHealthDate
          let oneMinute: TimeInterval = 60
          var currentDate = Date()
@@ -69,18 +56,53 @@ struct EmojiRangerWidgetEntryView : View {
         @ViewBuilder
     var body: some View {
         switch family {
+        case .accessoryCircular:
+            ProgressView(timerInterval: entry.character.injuryDate...entry.character.fullHealthDate,
+                         countsDown: false,
+                         label: { Text(entry.character.name) },
+                         currentValueLabel: {
+                Avatar(character: entry.character)
+            })
+            .progressViewStyle(.circular)
+        case .accessoryInline:
+            ViewThatFits {
+                Text("\(entry.character.name) is healing, ready in \(entry.character.fullHealthDate, style: .relative)")
+                Text("\(entry.character.name) ready in \(entry.character.fullHealthDate, style: .relative)")
+                Text("\(entry.character.name) \(entry.character.fullHealthDate, style: .timer)")
+            }
+            .widgetURL(entry.character.url)
+            .background(Color.gameBackground)
         case .systemSmall:
             ZStack {
                 AvatarView(entry.character)
                     .foregroundStyle(.white)
+                    .contentTransition(.numericText(value: entry.date.timeIntervalSince1970))
             }
             .background(Color.gameBackground)
             .widgetURL(entry.character.url)
+        case . systemLarge:
+            VStack {
+                HStack(alignment: .top) {
+                    AvatarView(entry.character)
+                        .foregroundColor(.white)
+                    Text(entry.character.bio)
+                        .foregroundColor(.white)
+                }
+                .padding()
+                if #available(iOSApplicationExtension 17.0, *) {
+                    Button(intent: SuperCharge()) {
+                        Text("⚡️")
+                            .lineLimit(1)
+                    }
+                }
+            }
+            
         default:
             ZStack {
                 HStack(alignment: .top) {
                     AvatarView(entry.character)
                         .foregroundStyle(.white)
+                        .contentTransition(.numericText(countsDown: true))
                     Text(entry.character.bio)
                         .padding()
                         .foregroundStyle(.white)
@@ -90,44 +112,64 @@ struct EmojiRangerWidgetEntryView : View {
             }
             .background(Color.gameBackground)
             .widgetURL(entry.character.url)
+            
         }
     }
+    
+    func rotateArray(someArray: [Int], times: Int) -> [Int] {
+         guard !someArray.isEmpty else { return [] }
+         guard times > 0 else { return someArray }
+         var array = someArray
+         for i in 0..<times {
+             let element = array[i]
+             array.remove(at: i)
+             array.append(element)
+         }
+         return array
+     }
+    
 }
 
 struct EmojiRangerWidget: Widget {
     let kind: String = "EmojiRangerWidget"
 
     var body: some WidgetConfiguration {
+        ///Dynamic configuration Widget.
         IntentConfiguration(kind: kind, intent: DynamicCharacterSelectionIntent.self, provider: Provider()) { entry in
-//            if #available(iOS 17.0, *) {
                 EmojiRangerWidgetEntryView(entry: entry)
                     .containerBackground(Color.gameBackground, for: .widget)
-//            } else {
-//                EmojiRangerWidgetEntryView(entry: entry)
-//                    .padding()
-//                    .background(Color.gameBackground)
-//            }
         }
         .configurationDisplayName("Emoji Ranger Detail")
         .description("Keep track of your favorite emoji")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryInline, .accessoryCircular])
+        
     }
+    
+   
+    
 }
 
 
 //MARK: - preview 
 
-struct WidgetViewPreviews: PreviewProvider {
+//struct WidgetViewPreviews: PreviewProvider {
+//
+//  static var previews: some View {
+//    Group {
+//        EmojiRangerWidgetEntryView(entry: SimpleEntry(date: Date(), character: .panda, relevance: nil))
+//            .containerBackground(Color.gameBackground, for: .widget)
+//    }
+//    .previewContext(WidgetPreviewContext(family: .systemSmall))
+//  }
+//}
 
-  static var previews: some View {
-    Group {
-        EmojiRangerWidgetEntryView(entry: SimpleEntry(date: Date(), character: .panda, relevance: nil))
-            .containerBackground(Color.gameBackground, for: .widget)
-    }
-    .previewContext(WidgetPreviewContext(family: .systemSmall))
-  }
-}
 
+#Preview(as: WidgetFamily.accessoryCircular, widget: {
+    EmojiRangerWidget()
+}, timeline: {
+    SimpleEntry(date: Date(), character: .panda, relevance: nil)
+    SimpleEntry(date: Date(), character: .octo, relevance: nil)
+})
 
 extension View {
      func widgetBackground() -> some View {

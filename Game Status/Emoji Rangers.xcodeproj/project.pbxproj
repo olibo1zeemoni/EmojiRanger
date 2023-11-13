@@ -22,6 +22,9 @@
 		BE6A2CE7249988AD0022915C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A2CE5249988AD0022915C /* ContentView.swift */; };
 		F50F78622B009EA80083F395 /* ImageURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D58F9E2498199400137818 /* ImageURLProtocol.swift */; };
 		F50F78652B00A3B90083F395 /* IOSIntentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50F78642B00A3B90083F395 /* IOSIntentProvider.swift */; };
+		F50F78682B01DFED0083F395 /* SuperCharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50F78672B01DFED0083F395 /* SuperCharge.swift */; };
+		F50F78692B01DFED0083F395 /* SuperCharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50F78672B01DFED0083F395 /* SuperCharge.swift */; };
+		F50F786A2B01DFED0083F395 /* SuperCharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50F78672B01DFED0083F395 /* SuperCharge.swift */; };
 		F519E3DB2AFFB60A0064FD02 /* LeaderBoardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F519E3DA2AFFB60A0064FD02 /* LeaderBoardWidget.swift */; };
 		F57D506C2AFE58E400403D52 /* EmojRangerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58BF6F62AFE0A3400A5A0D8 /* EmojRangerWidget.swift */; };
 		F58BF6F12AFE0A3400A5A0D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5733B346248884DD0035C9B7 /* WidgetKit.framework */; };
@@ -102,6 +105,7 @@
 		BE6A2CE5249988AD0022915C /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E68FC7C59970E72A6D9463B8 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = ../Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		F50F78642B00A3B90083F395 /* IOSIntentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSIntentProvider.swift; sourceTree = "<group>"; };
+		F50F78672B01DFED0083F395 /* SuperCharge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCharge.swift; sourceTree = "<group>"; };
 		F519E3DA2AFFB60A0064FD02 /* LeaderBoardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardWidget.swift; sourceTree = "<group>"; };
 		F58BF6F02AFE0A3400A5A0D8 /* EmojRangerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EmojRangerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58BF6F42AFE0A3400A5A0D8 /* EmojRangerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojRangerWidgetBundle.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 			children = (
 				F58BF6FE2AFE0A3700A5A0D8 /* EmojRangerWidgetExtension.entitlements */,
 				BE6A2CDC249942FD0022915C /* README.md */,
+				F50F78662B01DFCF0083F395 /* App Intent */,
 				5733B32B2488842D0035C9B7 /* Game Status */,
 				F58BF6F32AFE0A3400A5A0D8 /* EmojRangerWidget */,
 				F59114F92B0090A20094D329 /* EmojiRangerIntentsHandler */,
@@ -270,6 +275,14 @@
 				F50F78642B00A3B90083F395 /* IOSIntentProvider.swift */,
 			);
 			path = IntentProviders;
+			sourceTree = "<group>";
+		};
+		F50F78662B01DFCF0083F395 /* App Intent */ = {
+			isa = PBXGroup;
+			children = (
+				F50F78672B01DFED0083F395 /* SuperCharge.swift */,
+			);
+			path = "App Intent";
 			sourceTree = "<group>";
 		};
 		F58BF6F32AFE0A3400A5A0D8 /* EmojRangerWidget */ = {
@@ -432,6 +445,7 @@
 			files = (
 				43D58FA32498199400137818 /* HealthLevelShape.swift in Sources */,
 				43D58FA12498199400137818 /* GameColors.swift in Sources */,
+				F50F78682B01DFED0083F395 /* SuperCharge.swift in Sources */,
 				F58BF70A2AFE3FCD00A5A0D8 /* CharacterSelectionIntents.intentdefinition in Sources */,
 				F59115052B0094150094D329 /* DynamicCharacterSelectionIntents.intentdefinition in Sources */,
 				57A01E77248898F100D9E45F /* DetailView.swift in Sources */,
@@ -452,6 +466,7 @@
 				F58BF7072AFE0A8100A5A0D8 /* CharacterDetail.swift in Sources */,
 				F58BF7022AFE0A8100A5A0D8 /* GameColors.swift in Sources */,
 				F519E3DB2AFFB60A0064FD02 /* LeaderBoardWidget.swift in Sources */,
+				F50F78692B01DFED0083F395 /* SuperCharge.swift in Sources */,
 				F59115072B0094290094D329 /* DynamicCharacterSelectionIntents.intentdefinition in Sources */,
 				F58BF7032AFE0A8100A5A0D8 /* ImageURLProtocol.swift in Sources */,
 				F58BF70B2AFE3FCD00A5A0D8 /* CharacterSelectionIntents.intentdefinition in Sources */,
@@ -473,6 +488,7 @@
 				F50F78622B009EA80083F395 /* ImageURLProtocol.swift in Sources */,
 				F59114FB2B0090A20094D329 /* IntentHandler.swift in Sources */,
 				F59115062B0094150094D329 /* DynamicCharacterSelectionIntents.intentdefinition in Sources */,
+				F50F786A2B01DFED0083F395 /* SuperCharge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
